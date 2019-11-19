@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Information or Notice</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/style.css' %}">
+</head>
+<body>
+	<div class="navigation">
+	    	<li><a href="{% url 'index' %}">Home</a></li>
+	    	<li><a href="">Complain</a></li>
+	    	<li><a href="/admin/">Admin</a></li>
+	    	<li><a href="">User Documentation</a></li>
+	    	<li><a href="/detail/">Project Developers</a></li>
+	    	<li class="foruser">
+	    		<div class="dropdown">
+					<button class="dropbtn">Hi {{ user.username }}</button>
+					 <div class="dropdown-content">
+					    <a href="#">Profile</a>
+					    <a href="#">Link 2</a>
+					    <a href="/logout/">LogOut</a>
+					</div>
+				</div> 
+	    	</li>
+	</div>
+
+	<div class="noticebox">
+		{% for notice in notices %}
+		<div class="notice">
+			<img src="{% static 'webapp/images/icon.png' %}">
+			<h3>{{ notice.subject }}</h3>
+			<p>{{ notice.description }}</p>
+		</div>
+		{% empty %}
+		<h1>Sorry no Notice to show</h1>
+		{% endfor %}
+	</div>
+<footer>
+    	
+    	<center>
+    		<h4>&copy2019 Division By Zero Municipal Complain Management System</h4>
+    	</center>
+    </footer>
+</body>
+</html>
